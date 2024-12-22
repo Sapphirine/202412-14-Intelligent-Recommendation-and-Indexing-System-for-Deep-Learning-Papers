@@ -1,8 +1,4 @@
-# DL2
-
-Deep Learning Learning Platform
-
-![Should be a system framework illustration](framework.png)
+# Intelligent Recommendation and Indexing System for Deep Learning Papers
 
 ## Local Deployment
 
