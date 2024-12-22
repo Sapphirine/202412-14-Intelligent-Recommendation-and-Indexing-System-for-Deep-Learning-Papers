@@ -1,0 +1,61 @@
+<app-topbar></app-topbar>
+<app-loading *ngIf="this.loading"></app-loading>
+<div class="tasks">
+  <div class="filtered-tasks">
+    <h2>Tasks</h2>
+    <div class="filter mb-8 mt-2">
+      <div class="flex flex-row items-center relative w-min">
+        <input
+          class="p-1 border-2 w-96 rounded outline-none border-slate-200 transition-all focus:border-slate-400"
+          type="text"
+          placeholder="Search tasks..."
+          (input)="this.filterTasks($event)"
+          (change)="this.filterTasks($event)"
+          [(ngModel)]="this.query"
+        />
+        <button
+          (click)="this.query = ''; this.filterTasks($event)"
+          class="flex justify-center items-center absolute right-2 text-slate-300 hover:text-slate-400 transition-all"
+        >
+          <mat-icon fontIcon="clear"></mat-icon>
+        </button>
+      </div>
+    </div>
+    <div
+      class="filtered"
+      *ngFor="let task of this.filteredTasks; index as i"
+      [ngClass]="this.includes(task.name) ? 'selected' : ''"
+      (click)="this.toggleSelection(task.name)"
+      (mouseenter)="this.toggleTaskIntro(task.name)"
+      (mouseleave)="this.toggleTaskIntro(task.name)"
+      #filtered
+    >
+      <span>{{ task.name }}</span>
+      <markdown katex [data]="task.intro"></markdown>
+      <!-- Child as background; position: absolute -->
+      <div
+        [ngStyle]="{
+        'width': task.expanded ? this.optionWidth + 'vw' : this.range * task.numPapers + 'vw',
+      }"
+      ></div>
+    </div>
+    <div class="empty" *ngIf="!this.filteredTasks.length">
+      The result is empty.
+    </div>
+  </div>
+  <div class="selected-tasks my-10">
+    <h2 class="mb-2">Selected</h2>
+    <div class="selected-tasks-list flex flex-row flex-wrap items-center">
+      <div
+        class="task px-2 py-1 mx-2 my-1 text-white"
+        *ngFor="let task of this.selectedTasks"
+      >
+        {{ task }}
+      </div>
+    </div>
+    <div class="empty" *ngIf="!this.selectedTasks.length">
+      Your favourite tasks are empty.
+    </div>
+  </div>
+  <button class="py-2 px-4 transition-all bg-slate-200 hover:bg-slate-300 text-xl " (click)="submit()">Save</button>
+</div>

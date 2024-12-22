@@ -1,0 +1,41 @@
+<app-topbar />
+<div class="title overflow-hidden w-screen h-screen flex justify-center items-center transition-opacity">
+  <div
+    class="left-bg absolute w-screen h-screen flex flex-col justify-center items-center"
+  >
+    <div class="left flex-col [&>*:nth-child(4)]:text-blue-600">
+      <div>Explainable,</div>
+      <div>Customized,</div>
+      <div>For Learners,</div>
+      <div>By Learners.</div>
+    </div>
+  </div>
+  <div class="right absolute " #graphContainer>
+    <!-- knowledge graph demo -->
+  </div>
+</div>
+<div class="featured mt-12 flex flex-col mb-40">
+  <div class="papers">
+    <h2>Featured Papers</h2>
+    <app-paper-info [papers]="papers"></app-paper-info>
+  </div>
+  <div class="methods">
+    <h2>Featured Methods</h2>
+    <div class="pop-content">
+      <span
+        *ngFor="let method of methods"
+        [routerLink]="'/method/'+method.name"
+      >
+        {{ method.name }}
+      </span>
+    </div>
+  </div>
+  <div class="tasks">
+    <h2>Featured Tasks</h2>
+    <div class="pop-content">
+      <span *ngFor="let task of tasks" [routerLink]="'/task/' + task.name">
+        {{ task.name }}
+      </span>
+    </div>
+  </div>
+</div>

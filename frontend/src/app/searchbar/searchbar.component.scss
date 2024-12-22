@@ -1,0 +1,59 @@
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 2em;
+  border: 1px solid silver;
+  border-radius: .2em;
+  background: white;
+  transition: all .2s ease-out;
+
+  input {
+    margin-left: 1em;
+    border: none;
+    width: 20vw;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  .app-switch {
+    margin-right: .5em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.background {
+  z-index: 50;
+  position: fixed;
+  left: 0;
+  top: 64px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  animation: 0.2s ease-out sr-showup forwards;
+}
+
+app-search-overlay {
+  position: fixed;
+  animation: 0.2s ease-out sr-showup forwards;
+  z-index: 100;
+}
+
+@keyframes sr-showup {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}

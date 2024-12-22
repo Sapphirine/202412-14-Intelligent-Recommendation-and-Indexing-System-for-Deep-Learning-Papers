@@ -1,0 +1,49 @@
+<app-topbar />
+<mat-drawer-container autosize="true">
+  <mat-drawer
+    mode="side"
+    [(opened)]="this.isDrawerOpen"
+  >
+    <app-fs
+      (fileSelected)="this.openFile($event)"
+      (fileOpened)="this.fillText($event)"
+    />
+    <div class="drag-handle" (mousedown)="this.toggleDrag($event)"></div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-tagbar
+      [tabs]="this.tabs"
+      [activeTab]="this.activeTab"
+      (tabClose)="this.closeTab($event)"
+      [style]="{
+        width: 'calc(100vw - ' + this.drawerWidth + ')',
+      }"
+      (fileOpened)="this.fillText($event)"
+    ></app-tagbar>
+    <div class="editor noselect {{ this.tabs.length ? '' : 'hidden' }}" #editor>
+      <div
+        class="line"
+        id="r{{ i }}"
+        *ngFor="let line of this.lines; index as i"
+      >
+        <div class="line-number {{ this.cursorPos.row == i ? 'current' : '' }}">
+          {{ i + 1 }}
+        </div>
+        <div class="line-content" id="rc{{ i }}">
+          <input (keydown)="this.control($event)" *ngIf="this.cursorPos.row == i" #cursor/>
+          <span
+            *ngFor="let char of line.split(''); index as j"
+            [attr.id]="'c' + i + '_' + j"
+            >{{ char === " " ? "&nbsp;" : char }}</span
+          >
+          <!-- Add a whitespace at the end of each line to prevent overflowing index -->
+          <span id="c{{ i }}_{{ line.split('').length }}">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+<div class="file-saving" *ngIf="this.saving">
+  <mat-spinner></mat-spinner>
+  <div class="text">Saving your file...</div>
+</div>

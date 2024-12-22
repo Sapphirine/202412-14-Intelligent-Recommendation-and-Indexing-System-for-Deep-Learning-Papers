@@ -1,0 +1,82 @@
+app-topbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.title {
+  $duration: 1s;
+  animation: $duration ease-out title-showup forwards;
+  opacity: 0%;
+
+  div {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5em;
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      font-size: 2em;
+      font-weight: bold;
+    }
+  }
+
+  .right {
+    animation: $duration ease-out title-showup forwards;
+    transition: all 0.5s ease-out;
+    // background: rgba(0, 0, 0, 0.5);
+    circle,
+    line {
+      transition: all 0.5s ease-out;
+    }
+  }
+}
+
+@keyframes title-showup {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.featured {
+  width: 80vw;
+  margin-left: 10vw;
+  h2,
+  h3 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  h2 {
+    font-size: 2.3em;
+    padding: 0;
+    margin: 0;
+    margin-top:1em;
+    margin-bottom: .5em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    padding: 0;
+    margin: 0;
+    margin-bottom: .2em;
+  }
+
+  .papers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+.pop-content {
+  span {
+    color: black;
+    background: gainsboro;
+  }
+}

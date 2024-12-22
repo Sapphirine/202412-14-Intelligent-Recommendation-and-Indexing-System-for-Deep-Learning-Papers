@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+**/*/.idea/
+**/*/.vscode/
+stats/
+venv/
+**/*/cache/
+*.tar
+key.sh
