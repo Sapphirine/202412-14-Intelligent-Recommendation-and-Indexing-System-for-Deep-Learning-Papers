@@ -1,5 +1,9 @@
 # Intelligent Recommendation and Indexing System for Deep Learning Papers
 
+## Demo Video
+
+[Refer to YouTube](https://www.youtube.com/watch?v=0W6iBIYbCnM)
+
 ## Local Deployment
 
 ### System Requirements
